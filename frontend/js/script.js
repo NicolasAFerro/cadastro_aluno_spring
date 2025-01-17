@@ -40,15 +40,21 @@ function loadCourses(){
 
 }
 
-function loadStudents() {
-  for (let student of students) {
-    // aqui é for ao inves de in
-    addNewRow(student);
-  }
+function loadStudents() { 
+
+    //getJson só chamada assincrona
+    $.getJSON("http://localhost:8080/students", (response) => {
+      students = response;
+      for (let stud of students) { 
+        // aqui é for ao inves de in
+        addNewRow(stud);
+      }
+    });
 }
 
 function addNewRow(student) {
   try {
+    console.log(student);
     var table = document.getElementById("studentsTable");
     var newRow = table.insertRow();
 
@@ -78,14 +84,14 @@ function addNewRow(student) {
     phoneCell.appendChild(phoneNode);
     //newRow.insertCell().appendChild(phoneNode);
 
-    var courseName = classes[student.course - 1].class_name;
+    var courseName = classes[student.idCurso-1].class_name;
     var courseNode = document.createTextNode(courseName);
     var courseCell = newRow.insertCell();
     courseCell.className = "d-none d-xl-table-cell text-center";
     courseCell.appendChild(courseNode);
     //newRow.insertCell().appendChild(courseNode);
 
-    var shiftName = shifts[student.shift - 1].name;
+    var shiftName = student.name;
     var shiftNode = document.createTextNode(shiftName);
     var shiftCell = newRow.insertCell();
     shiftCell.className = "d-none d-xl-table-cell text-center ";
