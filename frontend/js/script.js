@@ -1,46 +1,8 @@
 $("#inputPhone").mask("(00) 0000-0000");
 
-var students = [
-  {
-    id: 1,
-    name: "Maria Silva",
-    email: "maria@gmail.com",
-    phone: "(15) 9999-9999",
-    course: 1,
-    shift: 1,
-  },
-  {
-    id: 2,
-    name: "João Silva",
-    email: "joao@gmail.com",
-    phone: "(15) 9999-9999",
-    course: 2,
-    shift: 2,
-  },
-  {
-    id: 3,
-    name: "André Silva",
-    email: "andre@gmail.com",
-    phone: "(15) 9999-9999",
-    course: 3,
-    shift: 3,
-  },
-];
+var students = [];
 
-var classes = [
-  {
-    id_course: 1,
-    class_name: "Java",
-  },
-  {
-    id_course: 2,
-    class_name: "JavaScript",
-  },
-  {
-    id_course: 3,
-    class_name: "C#",
-  },
-];
+var classes = [];
 
 var shifts = [
   {
@@ -57,7 +19,26 @@ var shifts = [
   },
 ];
 
+loadCourses();
 loadStudents();
+ 
+function loadCourses(){  
+  $.ajax({
+    url: "http://localhost:8080/courses",
+    type: "GET",
+    async: false,
+    success: (response) => {
+      classes = response;
+      for(var clas of classes){ 
+        document.getElementById('selectCourses').innerHTML+=`<option value=${clas.id_course}>${clas.class_name}</option>`
+      }
+    },
+  }); 
+
+ 
+
+
+}
 
 function loadStudents() {
   for (let student of students) {

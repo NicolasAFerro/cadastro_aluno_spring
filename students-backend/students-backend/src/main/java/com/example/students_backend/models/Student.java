@@ -7,15 +7,15 @@ public class Student {
     private String email;
     private String phone;
     private int idCurso;
-    private int period;
+    private int shift;
 
-    public Student(int id, String name, String email, String phone, int idCurso, int period) {
+    public Student(int id, String name, String email, String phone, int idCurso, int shift) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.phone = phone;
         this.idCurso = idCurso;
-        this.period = period;
+        this.shift = shift;
     }
 
     public int getId() {
@@ -58,12 +58,12 @@ public class Student {
         this.idCurso = idCurso;
     }
 
-    public int getPeriod() {
-        return period;
+    public int getShift() {
+        return shift;
     }
 
-    public void setPeriod(int period) {
-        this.period = period;
+    public void setShift(int shift) {
+        this.shift = shift;
     }
 
 }
