@@ -91,7 +91,7 @@ function addNewRow(student) {
     courseCell.appendChild(courseNode);
     //newRow.insertCell().appendChild(courseNode);
 
-    var shiftName = student.name;
+    var shiftName = shifts[student.shift-1].name;
     var shiftNode = document.createTextNode(shiftName);
     var shiftCell = newRow.insertCell();
     shiftCell.className = "d-none d-xl-table-cell text-center ";
@@ -117,15 +117,26 @@ function save() {
       name: document.getElementById("inputNome").value,
       email: document.getElementById("inputEmail").value,
       phone: document.getElementById("inputPhone").value,
-      course: document.getElementById("selectCourses").value,
+      idCurso: document.getElementById("selectCourses").value,
       shift: shiftValue,
-    };
+    }; 
+    $.ajax({
+      url: "http://localhost:8080/students",
+      type: "POST",
+      contentType:"application/json",
+      data:JSON.stringify(student),
+      success: (student) => {
+        addNewRow(student);
+        students.push(student);
+        document.getElementById("studentsForm").reset();
+      },
+    });
 
-    console.log(student.shift);
+    
 
-    addNewRow(student);
-    students.push(student);
-    document.getElementById("studentsForm").reset();
+    
+    
+    
   } catch (error) {
     console.log(`save error:${error}`);
   }

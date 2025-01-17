@@ -22,14 +22,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RestController
 @CrossOrigin
 public class StudentsController {
-    // private List<Student> studentsList = new ArrayList<>();
-    private List<Student> studentsList = Arrays.asList(
-            new Student(1, "joão", "teste@teste", "(15)99999999", 1, 1),
-            new Student(2, "joão2", "teste@teste2", "(15)29999999", 2, 2),
-            new Student(3, "joão3", "teste@teste3", "(15)3999999", 3, 3)
+    private List<Student> studentsList = new ArrayList<>();
+    // private List<Student> studentsList = Arrays.asList(
+    // new Student(1, "joão", "teste@teste", "(15)99999999", 1, 1),
+    // new Student(2, "joão2", "teste@teste2", "(15)29999999", 2, 2),
+    // new Student(3, "joão3", "teste@teste3", "(15)3999999", 3, 3)
 
-    );
-    // private List<Student> studentsList = new ArrayList<>();
+    // );
 
     @GetMapping("students")
     public List<Student> getProducts() {
