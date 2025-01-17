@@ -1,4 +1,4 @@
-package com.nicolas.students_backend;
+package com.example.students_backend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
